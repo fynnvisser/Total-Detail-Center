@@ -5,7 +5,6 @@ import Trust from "../components/site/Trust";
 import About from "../components/site/About";
 import Services from "../components/site/Services";
 import Process from "../components/site/Process";
-import BeforeAfter from "../components/site/BeforeAfter";
 import Pricing from "../components/site/Pricing";
 import Tinting from "../components/site/Tinting";
 import Gallery from "../components/site/Gallery";
@@ -25,7 +24,6 @@ export default function Home() {
       <About />
       <Services />
       <Process />
-      <BeforeAfter />
       <Pricing />
       <Tinting />
       <Gallery />

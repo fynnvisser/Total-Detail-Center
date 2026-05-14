@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Wrench, Award, MapPin, Palette } from "lucide-react";
+import { ArrowRight, Award, MapPin, Palette } from "lucide-react";
 import { userCars, company } from "../../data/mock";
 
 export default function About() {
@@ -16,16 +16,16 @@ export default function About() {
         >
           <div className="relative overflow-hidden rounded-2xl border border-white/10 aspect-[4/5] shadow-2xl">
             <img
-              src={userCars.audiPolished}
-              alt="Audi A4 — polijstresultaat in De Westereen"
+              src={userCars.steamPeugeot}
+              alt="Robert Visser — stoomreiniging in De Westereen"
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover img-cinematic"
+              className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 backdrop-blur-md">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white">Recent gepolijst · Tolwei 24</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white">Aan het werk · Tolwei 24</span>
               </div>
             </div>
           </div>

@@ -4,7 +4,11 @@ import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import { company } from "../../data/mock";
 
 export default function Location() {
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=6.04488%2C53.27015%2C6.06488%2C53.28015&layer=mapnik&marker=53.27515%2C6.05488`;
+  // Tolwei 24, 9271 HM De Westereen — geverifieerde coordinaten
+  const lat = 53.2545;
+  const lng = 6.0307;
+  const delta = 0.0045;
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - delta}%2C${lat - delta * 0.55}%2C${lng + delta}%2C${lat + delta * 0.55}&layer=mapnik&marker=${lat}%2C${lng}`;
   return (
     <section id="locatie" className="relative overflow-hidden bg-ink py-24 md:py-32 text-ink-foreground">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center">

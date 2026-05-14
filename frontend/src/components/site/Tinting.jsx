@@ -30,7 +30,7 @@ export default function Tinting() {
               Met de beste folies, <span className="text-accent-red italic">RDW&#8209;conform</span>.
             </h2>
             <p className="mt-5 text-sm text-white/70 leading-relaxed">
-              Wij werken uitsluitend met <span className="text-white font-semibold">Sun-Gard</span> tint-folies en monteren volgens alle eisen van de wet en het RDW. Met eigen tint-meter garanderen wij de juiste lichtdoorlaatbaarheid — minimaal 55% voor voorportieren en voorruit.
+              Wij werken uitsluitend met <span className="text-white font-semibold">Sun-Gard</span> tint-folies en monteren volgens alle eisen van de wet en het RDW. Met eigen tint-meter garanderen wij de juiste lichtdoorlaatbaarheid &mdash; minimaal 55% voor voorportieren en voorruit.
             </p>
 
             <ul className="mt-7 space-y-3">
@@ -61,11 +61,22 @@ export default function Tinting() {
             className="md:col-span-7 space-y-4"
           >
             <div className="grid grid-cols-5 gap-3">
-              <div className="col-span-3 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+              <div className="col-span-3 aspect-[4/3] overflow-hidden rounded-2xl">
                 <img src={userCars.tintApplication} alt="Ruiten tinten" loading="lazy" className="h-full w-full object-cover" />
               </div>
-              <div className="col-span-2 aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-white">
-                <img src={userCars.tintChart} alt="Tint percentages 5%, 20%, 35%, 50%, 70%" loading="lazy" className="h-full w-full object-contain p-2" />
+              <div className="col-span-2 aspect-[4/3] overflow-hidden rounded-2xl relative bg-gradient-to-br from-white/[0.04] to-white/[0.02] border border-white/8">
+                <img
+                  src={userCars.tintChart}
+                  alt="Tint percentages 5%, 20%, 35%, 50%, 70%"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ filter: "invert(0.92) hue-rotate(180deg) contrast(1.15) brightness(0.9)" }}
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">Folie opacities</p>
+                  <p className="mt-0.5 text-[10px] text-white/55">5% · 20% · 35% · 50% · 70%</p>
+                </div>
               </div>
             </div>
 

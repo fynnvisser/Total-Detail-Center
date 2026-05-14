@@ -16,6 +16,9 @@ export const userCars = {
   tintChart: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/pbwngdqw_IMG_1156.jpeg',
 };
 
+// Cinematic hero image — dramatic red sports car headlight
+export const heroImage = 'https://images.unsplash.com/photo-1549207107-2704df6b92ab?crop=entropy&cs=srgb&fm=jpg&q=85&w=2400';
+
 // Echte bedrijfsinformatie
 export const company = {
   name: 'Total Detail Center Fryslân',
@@ -34,12 +37,15 @@ export const company = {
   email: 'autoenmotormaterialen@gmail.com',
   kvk: '52417328',
   btw: 'NL213022308B01',
+  // Tolwei 24, 9271 HM De Westereen — coordinates
+  lat: 53.2667,
+  lng: 6.0155,
 };
 
 export const stats = [
   { k: '14+', v: 'Jaar ervaring' },
-  { k: '50+', v: "Auto's behandeld" },
-  { k: '4.9', v: 'Klantbeoordeling' },
+  { k: '400+', v: "Auto's behandeld" },
+  { k: '4.5', v: 'Klantbeoordeling' },
   { k: '100%', v: 'Lokaal Fryslân' },
 ];
 
@@ -54,7 +60,6 @@ export const services = [
   { icon: 'Palette', title: 'Verfmengerij', text: 'Lakken op maat gemixt voor perfecte kleurmatch bij touch-ups.' },
 ];
 
-// Echte reviews
 export const reviews = [
   { name: 'Sjoukje Weening', rating: 4, text: "Auto laten poetsen. Super gedaan." },
   { name: 'Aron Hoekstra', rating: 5, text: "Juiste service voor een goeie prijs." },
@@ -68,7 +73,6 @@ export const processSteps = [
   { n: '04', icon: 'Shield', title: 'Glascoating', text: 'Voor maximale bescherming: meerjarige keramische coating. Afhankelijk van het type zorgt deze voor jaren bescherming van de autolak.' },
 ];
 
-// Echte prijslijst (poetscodes A–G)
 export const poetsCodes = [
   { code: 'A', name: 'Auto Binnen en Buiten', detail: 'Lak polijsten, interieur intensief & lak pantser aanbrengen', price: '€ 225' },
   { code: 'B', name: 'Auto Binnen en Buiten', detail: 'Lak polijsten, wax & interieur intensief', price: '€ 185' },
@@ -79,7 +83,6 @@ export const poetsCodes = [
   { code: 'G', name: 'Auto Buiten', detail: 'Grondig wassen, wax, afdrogen', price: '€ 99' },
 ];
 
-// Echte ruitenblindeer-prijzen
 export const tintPrices = [
   { item: 'Achterportierruit (draairuit)', price: '€ 60', per: 'per stuk' },
   { item: 'Achterportierruit (draairuit) + kleine ruit', price: '€ 65', per: 'per stuk' },
