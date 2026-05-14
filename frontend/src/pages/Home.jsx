@@ -5,7 +5,7 @@ import Trust from "../components/site/Trust";
 import About from "../components/site/About";
 import Services from "../components/site/Services";
 import Process from "../components/site/Process";
-import Pricing from "../components/site/Pricing";
+import PricingQuiz from "../components/site/PricingQuiz";
 import Tinting from "../components/site/Tinting";
 import Gallery from "../components/site/Gallery";
 import Reviews from "../components/site/Reviews";
@@ -24,7 +24,7 @@ export default function Home() {
       <About />
       <Services />
       <Process />
-      <Pricing />
+      <PricingQuiz />
       <Tinting />
       <Gallery />
       <Reviews />
