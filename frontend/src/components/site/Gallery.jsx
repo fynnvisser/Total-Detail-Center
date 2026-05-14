@@ -4,19 +4,25 @@ import { X } from "lucide-react";
 import { userCars, stock } from "../../data/mock";
 
 const items = [
-  { src: userCars.skodaBlack, alt: "Skoda Superb — keramische coating", cat: "detailing", label: "Skoda Superb", tag: "Coating", filter: true },
-  { src: userCars.bmwGrey, alt: "BMW iX2 — premium detail", cat: "detailing", label: "BMW iX2 M Sport", tag: "Premium Detail", filter: true },
-  { src: userCars.audiGrey, alt: "Audi A3 S-line — polijsten", cat: "detailing", label: "Audi A3 S-line", tag: "Polijsten", filter: true },
-  { src: userCars.bmw4Black, alt: "BMW 4-Serie Gran Coupé — wax bescherming", cat: "detailing", label: "BMW 4-Serie GC", tag: "Wax", filter: true },
-  { src: stock.coating, alt: "Ceramic coating applicatie", cat: "detailing", label: "Keramische coating", tag: "Coating" },
-  { src: stock.foam, alt: "Snowfoam wash", cat: "detailing", label: "Snowfoam wash", tag: "Onderhoud" },
+  { src: userCars.audiA6Blue, alt: "Audi A6 Avant S-line — polijsten", cat: "exterieur", label: "Audi A6 Avant", tag: "Polijsten", filter: true, big: true },
+  { src: userCars.gClass, alt: "Mercedes G-klasse — klassieker detail", cat: "exterieur", label: "Mercedes G-klasse", tag: "Klassieker detail", filter: true },
+  { src: userCars.bmwGrey, alt: "BMW iX2 M Sport — premium detail", cat: "exterieur", label: "BMW iX2 M Sport", tag: "Premium detail", filter: true },
+  { src: userCars.mercedesInterior, alt: "Mercedes GLC interieur — reiniging", cat: "interieur", label: "Mercedes GLC", tag: "Interieur premium", filter: true },
+  { src: userCars.steamPeugeot, alt: "Peugeot 207 — stoomreiniging", cat: "interieur", label: "Peugeot 207", tag: "Stoomreiniging", filter: true },
+  { src: userCars.skodaBlack, alt: "Skoda Superb — keramische coating", cat: "coating", label: "Skoda Superb", tag: "Coating", filter: true },
+  { src: userCars.audiGrey, alt: "Audi A3 S-line — polijsten", cat: "exterieur", label: "Audi A3 S-line", tag: "Polijsten", filter: true },
+  { src: userCars.bmw4Black, alt: "BMW 4-Serie Gran Coupé — wax bescherming", cat: "coating", label: "BMW 4-Serie GC", tag: "Wax bescherming", filter: true },
+  { src: userCars.meguiars, alt: "Meguiar’s professionele tools", cat: "studio", label: "Meguiar’s setup", tag: "Onze tools", filter: true },
+  { src: stock.coating, alt: "Ceramic coating applicatie", cat: "coating", label: "Keramische coating", tag: "9H Coating" },
+  { src: stock.foam, alt: "Snowfoam wash", cat: "exterieur", label: "Snowfoam wash", tag: "Onderhoud" },
 ];
 
 const filters = [
   { id: "all", label: "Alles" },
-  { id: "detailing", label: "Detailing" },
-  { id: "wrapping", label: "Wrapping" },
-  { id: "tinting", label: "Tinting" },
+  { id: "exterieur", label: "Exterieur" },
+  { id: "interieur", label: "Interieur" },
+  { id: "coating", label: "Coating" },
+  { id: "studio", label: "Studio" },
 ];
 
 export default function Gallery() {
@@ -52,6 +58,7 @@ export default function Gallery() {
             <h2 className="display-lg mt-6">
               Geleverd in <span className="text-accent-red italic">Friesland</span>.
             </h2>
+            <p className="mt-4 text-sm text-foreground/60 max-w-sm">Een greep uit recente projecten — van klassiekers tot SUV’s en daily drivers.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -76,10 +83,7 @@ export default function Gallery() {
           </motion.div>
         </div>
 
-        <motion.div
-          layout
-          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <motion.div layout className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 auto-rows-[260px] md:auto-rows-[320px]">
           <AnimatePresence mode="popLayout">
             {visible.map((i, idx) => (
               <motion.button
@@ -91,7 +95,9 @@ export default function Gallery() {
                 transition={{ duration: 0.4, delay: idx * 0.04 }}
                 onClick={() => setLightbox(idx)}
                 whileHover={{ y: -6 }}
-                className="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-secondary text-left shadow-sm hover:shadow-2xl transition-shadow duration-500"
+                className={`group relative overflow-hidden rounded-3xl bg-secondary text-left shadow-sm hover:shadow-2xl transition-shadow duration-500 ${
+                  i.big ? 'col-span-2 row-span-2' : ''
+                }`}
               >
                 <img
                   src={i.src}
@@ -99,14 +105,14 @@ export default function Gallery() {
                   loading="lazy"
                   className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${i.filter ? 'img-cinematic' : ''}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/0 to-transparent" />
-                <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-3">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent" />
+                <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">{i.tag}</p>
-                    <p style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-1 text-xl font-bold text-white">{i.label}</p>
+                    <p className="text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">{i.tag}</p>
+                    <p style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-1 text-lg md:text-xl font-bold text-white leading-tight">{i.label}</p>
                   </div>
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-ink transition-transform group-hover:rotate-45">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                  <span className="grid h-8 w-8 md:h-9 md:w-9 place-items-center rounded-full bg-white text-ink transition-transform group-hover:rotate-45 shrink-0">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17L17 7M9 7h8v8" /></svg>
                   </span>
                 </div>
               </motion.button>

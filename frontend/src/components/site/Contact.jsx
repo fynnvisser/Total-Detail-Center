@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { company } from "../../data/mock";
 
 function validate(data) {
   const errs = {};
@@ -25,7 +26,7 @@ export default function Contact() {
     }
     setErrors({});
     const text = `Hallo TDC, ik ben ${data.name} (${data.car}). ${data.message}`;
-    window.open(`https://wa.me/31600000000?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
     setSent(true);
   };
 
@@ -51,32 +52,32 @@ export default function Contact() {
           </p>
 
           <div className="mt-10 space-y-1 rounded-2xl border border-foreground/10 bg-card p-2">
-            <a href="https://wa.me/31600000000" className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
+            <a href={`https://wa.me/${company.whatsapp}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MessageCircle size={18} /></span>
               <div>
                 <p className="text-xs text-foreground/55">WhatsApp</p>
-                <p className="text-sm font-semibold text-foreground">+31 6 0000 0000</p>
+                <p className="text-sm font-semibold text-foreground">{company.mobile}</p>
               </div>
             </a>
-            <a href="tel:+31600000000" className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
+            <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Phone size={18} /></span>
               <div>
                 <p className="text-xs text-foreground/55">Bel direct</p>
-                <p className="text-sm font-semibold text-foreground">+31 6 0000 0000</p>
+                <p className="text-sm font-semibold text-foreground">{company.phone}</p>
               </div>
             </a>
-            <a href="mailto:info@tdcfryslan.nl" className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
+            <a href={`mailto:${company.email}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Mail size={18} /></span>
               <div>
                 <p className="text-xs text-foreground/55">E-mail</p>
-                <p className="text-sm font-semibold text-foreground">info@tdcfryslan.nl</p>
+                <p className="text-sm font-semibold text-foreground break-all">{company.email}</p>
               </div>
             </a>
             <div className="flex items-center gap-4 rounded-xl p-4">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MapPin size={18} /></span>
               <div>
                 <p className="text-xs text-foreground/55">Locatie</p>
-                <p className="text-sm font-semibold text-foreground">De Westereen, Fryslân</p>
+                <p className="text-sm font-semibold text-foreground">{company.street}, {company.postal} {company.city}</p>
               </div>
             </div>
           </div>

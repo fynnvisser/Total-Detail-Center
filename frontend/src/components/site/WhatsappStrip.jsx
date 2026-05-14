@@ -1,6 +1,7 @@
 import React from "react";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { company } from "../../data/mock";
 
 export default function WhatsappStrip() {
   return (
@@ -20,20 +21,20 @@ export default function WhatsappStrip() {
           <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div className="max-w-xl">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
-                Direct contact
+                Direct contact — {company.mobile}
               </p>
               <h3 style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05]">
                 Klaar om jouw auto te laten stralen?
               </h3>
               <p className="mt-4 text-sm md:text-base text-white/85">
-                Stuur een bericht — meestal binnen één uur antwoord.
+                Stuur Robert een bericht — meestal binnen één uur antwoord.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                href="https://wa.me/31600000000"
+                href={`https://wa.me/${company.whatsapp}`}
                 className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink hover:bg-ink hover:text-white transition-colors"
               >
                 <MessageCircle size={16} /> WhatsApp

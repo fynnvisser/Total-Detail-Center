@@ -1,9 +1,9 @@
 import React from "react";
-import { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa, ArrowUpRight } from "lucide-react";
+import { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa, Wand2, Lightbulb, ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import { services } from "../../data/mock";
 
-const iconMap = { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa };
+const iconMap = { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa, Wand2, Lightbulb };
 
 export default function Services() {
   return (
@@ -25,17 +25,16 @@ export default function Services() {
           </Reveal>
           <Reveal delay={0.15}>
             <p className="max-w-sm text-sm text-foreground/65">
-              Van een snelle opfrisbeurt tot een volledige bescherming met
-              keramische coating — alles uitgevoerd met aandacht voor detail.
+              Van een snelle opfrisbeurt tot volledige bescherming met keramische coating — alles uitgevoerd met aandacht voor detail.
             </p>
           </Reveal>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => {
-            const Icon = iconMap[s.icon];
+            const Icon = iconMap[s.icon] || Sparkles;
             return (
-              <Reveal key={s.title} delay={i * 0.08}>
+              <Reveal key={s.title} delay={i * 0.06}>
                 <article className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-card p-7 transition-all duration-500 hover:-translate-y-1 hover:border-foreground/30 hover:shadow-2xl h-full">
                   <div aria-hidden className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-primary/0 transition-all duration-500 group-hover:bg-primary/10 group-hover:scale-150" />
                   <div className="relative flex items-start justify-between">
@@ -46,6 +45,7 @@ export default function Services() {
                   </div>
                   <h3 className="relative mt-8 text-lg font-semibold text-foreground">{s.title}</h3>
                   <p className="relative mt-2 text-sm leading-relaxed text-foreground/60">{s.text}</p>
+                  <p className="relative mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-primary">{s.from}</p>
                 </article>
               </Reveal>
             );

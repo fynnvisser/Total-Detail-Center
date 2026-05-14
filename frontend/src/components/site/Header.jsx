@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { company } from "../../data/mock";
 
 const links = [
   { href: "#diensten", label: "Diensten" },
+  { href: "#werkwijze", label: "Werkwijze" },
+  { href: "#prijzen", label: "Prijzen" },
   { href: "#projecten", label: "Projecten" },
-  { href: "#reviews", label: "Reviews" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -35,29 +37,26 @@ export default function Header() {
           >
             <span className="-rotate-45">TDC</span>
           </motion.span>
-          <span className="hidden sm:block font-display italic text-base font-black tracking-tight text-white uppercase" style={{ fontFamily: "'Inter Tight', sans-serif" }}>
+          <span style={{ fontFamily: "'Inter Tight', sans-serif" }} className="hidden sm:block italic text-base font-black tracking-tight text-white uppercase">
             Total<span className="text-white/50">.</span>Detail
           </span>
         </a>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-8 lg:gap-10 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               className="relative text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 transition-colors hover:text-white"
             >
-              <span className="relative">
-                {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full hover:w-full" />
-              </span>
+              {l.label}
             </a>
           ))}
         </nav>
 
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-ink transition-all hover:bg-primary hover:text-white"
+          className="hidden md:inline-flex items-center gap-2 rounded-full bg-white px-5 lg:px-6 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-ink transition-all hover:bg-primary hover:text-white"
         >
           Plan afspraak
         </a>
@@ -86,7 +85,7 @@ export default function Header() {
                   {l.label}
                 </a>
               ))}
-              <a href="https://wa.me/31600000000" className="btn-red mt-2">
+              <a href={`https://wa.me/${company.whatsapp}`} className="btn-red mt-2">
                 <MessageCircle size={16} /> WhatsApp
               </a>
             </div>
