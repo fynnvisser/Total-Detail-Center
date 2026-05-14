@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Inter+Tight:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+code { font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace; }
+
+html { scroll-behavior: smooth; }
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+    /* Warm editorial off-white */
+    --background: 36 25% 94%;          /* #F4F1EC */
+    --foreground: 240 6% 5%;           /* near black */
+    --surface: 40 22% 96%;
+    --surface-foreground: 240 6% 5%;
+
+    /* Dark ink */
+    --ink: 230 12% 7%;                  /* #0E0F12 */
+    --ink-foreground: 0 0% 98%;
+    --ink-muted: 230 5% 60%;
+    --ink-border: 230 6% 22%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 5%;
+
+    /* Punchy brand red ~ #D40000 */
+    --primary: 0 100% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 36 14% 88%;
+    --secondary-foreground: 240 6% 5%;
+    --muted: 36 14% 88%;
+    --muted-foreground: 30 6% 40%;
+    --accent: 36 14% 88%;
+    --accent-foreground: 240 6% 5%;
+    --destructive: 0 100% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 10% 82%;
+    --input: 36 10% 82%;
+    --ring: 0 100% 42%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
+  ::selection { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+}
+
+@layer components {
+  .container-tdc { @apply mx-auto w-full max-w-7xl px-6 md:px-10; }
+
+  .display {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .display-xl {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    font-size: clamp(2.75rem, 8vw, 7rem);
+  }
+  .display-lg {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    font-size: clamp(2.25rem, 6vw, 5rem);
+  }
+  .display-md {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+  }
+  .display-italic {
+    font-family: 'Inter Tight', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    transform: skewX(-6deg);
+  }
+  .hero-italic {
+    font-family: 'Inter Tight', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    transform: skewX(-6deg);
+    text-transform: uppercase;
+    font-size: clamp(3rem, 11vw, 9rem);
+  }
+  .hero-italic-sm {
+    font-family: 'Inter Tight', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    transform: skewX(-6deg);
+    text-transform: uppercase;
+    font-size: clamp(2.25rem, 7vw, 5.5rem);
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/60 px-4 py-1.5 text-xs font-medium text-foreground/80 backdrop-blur;
+  }
+  .pill-dark {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/80 backdrop-blur;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-medium text-background transition-all hover:bg-foreground/90 hover:shadow-lg;
+  }
+  .btn-red {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-foreground/20 bg-transparent px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background;
+  }
+  .btn-ghost-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-transparent px-6 py-3.5 text-sm font-medium text-white transition-colors;
+  }
+  .btn-ghost-dark:hover { background: white; color: hsl(var(--ink)); }
+
+  .ghost-word {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .text-accent-red { color: hsl(var(--primary)); }
+
+  .bg-ink { background-color: hsl(var(--ink)); }
+  .text-ink { color: hsl(var(--ink)); }
+  .text-ink-foreground { color: hsl(var(--ink-foreground)); }
+  .border-ink-border { border-color: hsl(var(--ink-border)); }
+
+  /* Marquee */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-marquee { animation: marquee 35s linear infinite; }
+
+  /* Slow zoom */
+  @keyframes slowzoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  .animate-slowzoom { animation: slowzoom 18s ease-in-out infinite; }
+
+  /* Image filter neutralizer used for user uploads to feel more cohesive */
+  .img-cinematic {
+    filter: contrast(1.08) saturate(0.9) brightness(0.96);
+  }
+}
