@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { stock } from "../../data/mock";
 
 const points = [
-  "Meer dan 10 jaar ervaring met auto detailing.",
-  "1.500+ auto's behandeld in heel Friesland.",
-  "Werken alleen met premium producten en gereedschap.",
-  "Persoonlijke aanpak — elke auto krijgt de tijd die het verdient.",
+  "14+ jaar ervaring \u2014 sinds 2011 actief in De Westereen.",
+  "50+ auto's behandeld in heel Friesland en daarbuiten.",
+  "Eigen verfmengerij voor perfecte kleurmatch op elke lak.",
+  "Werken alleen met premium Meguiar's producten en pro tools.",
+  "Persoonlijke aanpak \u2014 elke auto krijgt de tijd die het verdient.",
 ];
 
 export default function ExperienceSection() {

@@ -62,9 +62,11 @@ export default function About() {
             Robert Visser <span className="text-accent-red italic">&amp;</span> 14 jaar passie voor lak.
           </h2>
           <p className="mt-5 text-base text-white/75 leading-relaxed">
-            Wat begon in 2011 als sleutelen aan eigen voertuigen, groeide uit tot {company.parent} — een complete
-            specialist in detailing, polijsten, wrappen en blinderen in De Westereen.
-            Met een eigen verfmengerij, professionele Meguiar’s gereedschap en oog voor elk detail behandelen we elke auto, motor of klassieker met dezelfde precisie.
+            Wat in 2011 begon met de overname van Landman Automaterialen, groeide uit tot {company.parent} &mdash;
+            een complete detail-studio aan de Tolwei in De Westereen. Met een
+            <span className="text-white"> eigen verfmengerij</span> voor lakken op maat,
+            professioneel Meguiar&rsquo;s gereedschap en oog voor elk detail behandelen we elke auto, motor of klassieker
+            met dezelfde precisie. Geen wasstraat-routine &mdash; alleen vakwerk.
           </p>
 
           <div className="mt-10 grid grid-cols-3 gap-4">
