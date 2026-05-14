@@ -2,16 +2,13 @@ import React from "react";
 import Header from "../components/site/Header";
 import Hero from "../components/site/Hero";
 import Trust from "../components/site/Trust";
-import Marquee from "../components/site/Marquee";
 import About from "../components/site/About";
-import Features from "../components/site/Features";
-import ExperienceSection from "../components/site/ExperienceSection";
 import Services from "../components/site/Services";
 import Process from "../components/site/Process";
 import BeforeAfter from "../components/site/BeforeAfter";
 import Pricing from "../components/site/Pricing";
+import Tinting from "../components/site/Tinting";
 import Gallery from "../components/site/Gallery";
-import Team from "../components/site/Team";
 import Reviews from "../components/site/Reviews";
 import FAQ from "../components/site/FAQ";
 import Location from "../components/site/Location";
@@ -25,16 +22,13 @@ export default function Home() {
       <Header />
       <Hero />
       <Trust />
-      <Marquee />
       <About />
-      <Features />
-      <ExperienceSection />
       <Services />
       <Process />
       <BeforeAfter />
       <Pricing />
+      <Tinting />
       <Gallery />
-      <Team />
       <Reviews />
       <FAQ />
       <Location />

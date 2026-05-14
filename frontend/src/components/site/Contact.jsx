@@ -11,6 +11,16 @@ function validate(data) {
   return errs;
 }
 
+function buildWhatsappMessage({ name, car, message }) {
+  return [
+    `*Aanvraag via website*`,
+    ``,
+    `*Naam:* ${name}`,
+    `*Auto:* ${car}`,
+    `*Bericht:* ${message}`,
+  ].join("\n");
+}
+
 export default function Contact() {
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
@@ -25,56 +35,55 @@ export default function Contact() {
       return;
     }
     setErrors({});
-    const text = `Hallo TDC, ik ben ${data.name} (${data.car}). ${data.message}`;
+    const text = buildWhatsappMessage(data);
     window.open(`https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
     setSent(true);
   };
 
   return (
-    <section id="contact" className="bg-background py-24 md:py-32">
-      <div className="container-tdc grid gap-14 md:grid-cols-2 md:gap-16">
+    <section id="contact" className="bg-background py-20 md:py-28">
+      <div className="container-tdc grid gap-12 md:grid-cols-2 md:gap-14">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
         >
           <span className="pill">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             Contact
           </span>
-          <h2 className="display-lg mt-6">
+          <h2 className="display-md mt-5">
             Plan een <span className="text-accent-red italic">afspraak</span>.
           </h2>
           <p className="mt-4 max-w-md text-base text-foreground/65">
-            Stuur een bericht via WhatsApp of vul het formulier in — we
-            denken graag mee over de beste behandeling voor jouw auto.
+            Stuur een bericht via WhatsApp of vul het formulier in &mdash; we denken graag mee over de beste behandeling voor jouw auto.
           </p>
 
-          <div className="mt-10 space-y-1 rounded-2xl border border-foreground/10 bg-card p-2">
-            <a href={`https://wa.me/${company.whatsapp}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MessageCircle size={18} /></span>
+          <div className="mt-8 space-y-1 rounded-2xl border border-foreground/10 bg-card p-2">
+            <a href={`https://wa.me/${company.whatsapp}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/[0.04] transition-colors">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MessageCircle size={17} /></span>
               <div>
                 <p className="text-xs text-foreground/55">WhatsApp</p>
                 <p className="text-sm font-semibold text-foreground">{company.mobile}</p>
               </div>
             </a>
-            <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Phone size={18} /></span>
+            <a href={`tel:${company.phoneRaw}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/[0.04] transition-colors">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Phone size={17} /></span>
               <div>
                 <p className="text-xs text-foreground/55">Bel direct</p>
                 <p className="text-sm font-semibold text-foreground">{company.phone}</p>
               </div>
             </a>
-            <a href={`mailto:${company.email}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/5 transition-colors">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Mail size={18} /></span>
+            <a href={`mailto:${company.email}`} className="flex items-center gap-4 rounded-xl p-4 hover:bg-foreground/[0.04] transition-colors">
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><Mail size={17} /></span>
               <div>
                 <p className="text-xs text-foreground/55">E-mail</p>
                 <p className="text-sm font-semibold text-foreground break-all">{company.email}</p>
               </div>
             </a>
             <div className="flex items-center gap-4 rounded-xl p-4">
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MapPin size={18} /></span>
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-primary/10 text-primary"><MapPin size={17} /></span>
               <div>
                 <p className="text-xs text-foreground/55">Locatie</p>
                 <p className="text-sm font-semibold text-foreground">{company.street}, {company.postal} {company.city}</p>
@@ -84,38 +93,46 @@ export default function Contact() {
         </motion.div>
 
         <motion.form
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           onSubmit={onSubmit}
-          className="space-y-4 rounded-3xl border border-foreground/10 bg-card p-7 md:p-9 shadow-sm"
+          className="space-y-4 rounded-2xl border border-foreground/10 bg-card p-6 md:p-8 shadow-sm self-start"
         >
-          <Field label="Naam" name="name" error={errors.name} />
-          <Field label="Auto (merk + model)" name="car" error={errors.car} />
-          <Field label="Uw vraag" name="message" textarea error={errors.message} />
-          <button type="submit" className="btn-red w-full">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/55">Snel reactie via WhatsApp</span>
+          </div>
+          <Field label="Naam" name="name" error={errors.name} placeholder="Voornaam Achternaam" />
+          <Field label="Auto" name="car" error={errors.car} placeholder="Bijv. Audi A4 Avant 2018" />
+          <Field label="Bericht" name="message" textarea error={errors.message} placeholder="Korte beschrijving van wat je wilt laten doen…" />
+          <button type="submit" className="btn-red w-full !py-4">
+            <MessageCircle size={15} />
             Verstuur via WhatsApp
           </button>
           {sent && (
-            <p className="text-xs text-foreground/55">WhatsApp wordt geopend…</p>
+            <p className="text-xs text-foreground/55 text-center">WhatsApp wordt geopend…</p>
           )}
+          <p className="text-[11px] text-foreground/40 text-center leading-relaxed">
+            Je bericht wordt netjes opgemaakt met Naam, Auto en Bericht.
+          </p>
         </motion.form>
       </div>
     </section>
   );
 }
 
-function Field({ label, name, textarea, error }) {
+function Field({ label, name, textarea, error, placeholder }) {
   const cls =
-    "w-full rounded-xl border border-foreground/15 bg-background px-4 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-foreground/40 focus:border-foreground focus:ring-2 focus:ring-primary/20";
+    "w-full rounded-xl border border-foreground/15 bg-background px-4 py-3.5 text-sm text-foreground outline-none transition-colors placeholder:text-foreground/35 focus:border-foreground focus:ring-2 focus:ring-primary/15";
   return (
     <label className="block">
       <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-foreground/55">{label}</span>
       {textarea ? (
-        <textarea name={name} rows={4} className={cls} maxLength={1000} />
+        <textarea name={name} rows={4} className={cls} maxLength={1000} placeholder={placeholder} />
       ) : (
-        <input name={name} className={cls} maxLength={80} />
+        <input name={name} className={cls} maxLength={80} placeholder={placeholder} />
       )}
       {error && <span className="mt-1 block text-xs text-primary">{error}</span>}
     </label>

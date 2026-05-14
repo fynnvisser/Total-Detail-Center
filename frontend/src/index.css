@@ -142,14 +142,7 @@ html { scroll-behavior: smooth; }
   .btn-ghost-dark:hover { background: white; color: hsl(var(--ink)); }
 
   .ghost-word {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
-    -webkit-text-stroke: 1px currentColor;
-    color: transparent;
-    user-select: none;
-    pointer-events: none;
+    display: none;
   }
 
   .text-accent-red { color: hsl(var(--primary)); }

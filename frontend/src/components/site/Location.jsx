@@ -4,7 +4,7 @@ import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import { company } from "../../data/mock";
 
 export default function Location() {
-  const mapSrc = `https://www.google.com/maps?q=Tolwei+24,+9271+HM+De+Westereen&hl=nl&z=15&output=embed`;
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=6.04488%2C53.27015%2C6.06488%2C53.28015&layer=mapnik&marker=53.27515%2C6.05488`;
   return (
     <section id="locatie" className="relative overflow-hidden bg-ink py-24 md:py-32 text-ink-foreground">
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center">
@@ -37,18 +37,26 @@ export default function Location() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
-            className="md:col-span-8 overflow-hidden rounded-3xl border border-white/10 aspect-[16/10] md:aspect-auto md:h-[520px] shadow-2xl bg-white/5"
+            className="md:col-span-8 relative overflow-hidden rounded-3xl border border-white/10 aspect-[16/10] md:aspect-auto md:h-[520px] shadow-2xl bg-white"
           >
             <iframe
               title="Locatie Total Detail Center Fryslân"
               src={mapSrc}
               width="100%"
               height="100%"
-              style={{ border: 0, filter: "grayscale(0.4) contrast(1.05)" }}
+              style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
             />
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Tolwei+24+9271+HM+De+Westereen"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-ink/90 backdrop-blur-md border border-white/15 px-4 py-2.5 text-xs font-semibold text-white hover:bg-primary transition-colors"
+            >
+              <MapPin size={13} />
+              Bekijk op Google Maps
+            </a>
           </motion.div>
 
           <motion.div

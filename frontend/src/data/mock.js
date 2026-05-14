@@ -9,20 +9,11 @@ export const userCars = {
   gClass: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/rexbo7uv_IMG_1149.jpeg',
   mercedesInterior: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/3cbmsc9r_IMG_1150.jpeg',
   audiA6Blue: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/s8nts6vk_IMG_1151.jpeg',
-};
-
-// Stock premium imagery (for hero, before/after, accent shots)
-export const stock = {
-  hero1: 'https://images.unsplash.com/photo-1549207107-2704df6b92ab?crop=entropy&cs=srgb&fm=jpg&q=85&w=1920',
-  hero2: 'https://images.unsplash.com/photo-1730742298439-6d82f9edc3c2?crop=entropy&cs=srgb&fm=jpg&q=85&w=1920',
-  exp1: 'https://images.unsplash.com/photo-1708805282706-f44730b7e527?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
-  exp2: 'https://images.unsplash.com/photo-1708805282676-0c15476eb8a2?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
-  exp3: 'https://images.unsplash.com/photo-1708805282695-ef186db20192?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
-  exp4: 'https://images.unsplash.com/photo-1652898072202-5084dc85b850?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
-  before: 'https://images.unsplash.com/photo-1633014041037-f5446fb4ce99?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600',
-  after: 'https://images.unsplash.com/photo-1712129009070-97da6756d55b?crop=entropy&cs=srgb&fm=jpg&q=85&w=1600',
-  coating: 'https://images.unsplash.com/photo-1711513503808-53380d724182?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
-  foam: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?crop=entropy&cs=srgb&fm=jpg&q=85&w=900',
+  audiPolished: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/3cew7hmm_IMG_1152.jpeg',
+  polisher: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/7p0tou5x_IMG_1153.jpeg',
+  audiPolished2: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/fp79nusx_IMG_1154.png',
+  tintApplication: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/j8j7eupi_IMG_1155.jpeg',
+  tintChart: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/pbwngdqw_IMG_1156.jpeg',
 };
 
 // Echte bedrijfsinformatie
@@ -53,56 +44,48 @@ export const stats = [
 ];
 
 export const services = [
-  { icon: 'Sparkles', title: 'Polijsten', text: 'Krasjes, swirls en oneffenheden uit de blanke lak — diepe glans terug.', from: 'vanaf €149' },
-  { icon: 'Shield', title: 'Glascoating', text: 'Meerjarige bescherming tegen vuil, water, UV en strooizout. Hardheid tot 9H.', from: 'vanaf €349' },
-  { icon: 'Droplets', title: 'Wassen & kleien', text: 'Twee-emmer methode + claybar voor teerresten, boomsappen en aanslag.', from: 'vanaf €79' },
-  { icon: 'Sofa', title: 'Interieurreiniging', text: 'Stoelen, hemel, dashboard en kofferbak — hygiënisch en geurvrij.', from: 'vanaf €99' },
-  { icon: 'Layers', title: 'Wrappen', text: 'Premium folies in matte, satin en glossy finish — maatwerk.', from: 'op aanvraag' },
-  { icon: 'SquareStack', title: 'Ramen blinderen', text: 'Professionele tinting met perfecte pasvorm en wettelijke goedkeuring.', from: 'op aanvraag' },
-  { icon: 'Wand2', title: 'Wax & sealing', text: 'Klassieke carnauba wax of synthetische sealing tot 12 maanden bescherming.', from: 'vanaf €59' },
-  { icon: 'Lightbulb', title: 'Koplamprestoratie', text: 'Vergeelde koplampen weer kraakhelder — betere zichtbaarheid en uitstraling.', from: 'vanaf €79' },
+  { icon: 'Sparkles', title: 'Polijsten', text: 'Krassen en swirls verwijderen uit de blanke lak met DA polisher voor showroom-glans.' },
+  { icon: 'Droplets', title: 'Wassen & kleien', text: 'Twee-emmer methode + claybar: teerresten, boomsappen en aanslag eraf.' },
+  { icon: 'Wand2', title: 'Wax & sealing', text: 'Carnauba wax of synthetische sealing tot 12 maanden bescherming.' },
+  { icon: 'Shield', title: 'Glascoating', text: 'Meerjarige keramische bescherming — hydrofoob, hardheid tot 9H.' },
+  { icon: 'Sofa', title: 'Interieurreiniging', text: 'Stoelen, hemel, dashboard en kofferbak — hygiënisch en geurvrij.' },
+  { icon: 'SquareStack', title: 'Ramen blinderen', text: 'Sun-Gard tint folies, RDW-conform met eigen tint-meter en Dot-Matrix afwerking.' },
+  { icon: 'Layers', title: 'Wrappen', text: 'Premium folies in matte, satin en glossy finish — maatwerk.' },
+  { icon: 'Palette', title: 'Verfmengerij', text: 'Lakken op maat gemixt voor perfecte kleurmatch bij touch-ups.' },
 ];
 
+// Echte reviews
 export const reviews = [
-  { name: 'Jelle V.', place: 'Dokkum', car: 'VW Golf', text: "Auto ziet er weer als nieuw uit. Nette afspraken en op tijd klaar. Zeker een aanrader." },
-  { name: 'Marit D.', place: 'Drachten', car: 'BMW 320i', text: 'Polijstwerk is super netjes uitgevoerd, geen swirls meer in de lak. Top service.' },
-  { name: 'Sander K.', place: 'Leeuwarden', car: 'Tesla Model 3', text: 'Ramen perfect geblindeerd, strakke afwerking. Communicatie was helder en snel.' },
-  { name: 'Anouk B.', place: 'Sneek', car: 'Audi A3', text: 'Echt vakwerk. Mijn Audi glanst weer als nieuw, interieur ook spotloos. Aanrader!' },
+  { name: 'Sjoukje Weening', rating: 4, text: "Auto laten poetsen. Super gedaan." },
+  { name: 'Aron Hoekstra', rating: 5, text: "Juiste service voor een goeie prijs." },
+  { name: 'Antsje De Boer', rating: 5, text: "Auto geheel laten poetsen ivm verkoop." },
 ];
 
 export const processSteps = [
-  { n: '01', icon: 'Droplets', title: 'Wassen & kleien', text: "Twee-emmer methode, snowfoam en claybar voor een chemisch en mechanisch schone lak — de basis voor elk detail." },
-  { n: '02', icon: 'Sparkles', title: 'Polijsten', text: 'Met DA polisher en Meguiar’s producten — stap voor stap krasjes en swirls weg, blanke lak vrij van oneffenheden.' },
-  { n: '03', icon: 'Wand2', title: 'Wax of sealing', text: 'Klassieke wax of synthetische sealing — tot 12 maanden bescherming tegen weersinvloeden, water en UV.' },
-  { n: '04', icon: 'Shield', title: 'Glascoating', text: 'Voor maximale bescherming: meerjarige keramische coating met 9H hardheid — hydrofoob en zelfreinigend.' },
+  { n: '01', icon: 'Droplets', title: 'Wassen & kleien', text: "De auto wordt grondig gewassen en daarna ontdaan van teerresten, boomsappen en aanslag door middel van kleien — wat met normaal wassen niet weg gaat." },
+  { n: '02', icon: 'Sparkles', title: 'Polijsten', text: 'Met poetsmachine en de beste poetsmiddelen wordt de auto volledig gepoetst. De glans komt terug, lichte krasjes verdwijnen. Diepere krassen? Dan polijsten we de blanke lak.' },
+  { n: '03', icon: 'Wand2', title: 'Wax of sealing', text: 'Een goede wax beschermt voor langere tijd tegen weersinvloeden. Sealing blijft ongeveer een jaar zitten en is een sterkere optie.' },
+  { n: '04', icon: 'Shield', title: 'Glascoating', text: 'Voor maximale bescherming: meerjarige keramische coating. Afhankelijk van het type zorgt deze voor jaren bescherming van de autolak.' },
 ];
 
-export const pricingTiers = [
-  {
-    name: 'Onderhoud',
-    tagline: 'Snelle frisheid',
-    price: '€79',
-    period: 'vanaf',
-    features: ['Volledige wasbeurt', 'Velgen & banden', 'Ramen binnen & buiten', 'Quick detailer', 'Geurvrij interieur'],
-    cta: 'Plan onderhoud',
-    highlighted: false,
-  },
-  {
-    name: 'Detail Pakket',
-    tagline: 'Het meest gekozen',
-    price: '€249',
-    period: 'vanaf',
-    features: ['Wassen + claybar', '1-staps polijsten', 'Wax of sealing', 'Interieur diep', 'Koplampen opfrissen'],
-    cta: 'Boek Detail Pakket',
-    highlighted: true,
-  },
-  {
-    name: 'Premium Coating',
-    tagline: 'Showroom finish',
-    price: '€549',
-    period: 'vanaf',
-    features: ['Multi-staps polijsten', 'Decontaminatie', 'Keramische coating (9H)', 'Tot 5 jaar bescherming', 'Interieur premium'],
-    cta: 'Vraag offerte aan',
-    highlighted: false,
-  },
+// Echte prijslijst (poetscodes A–G)
+export const poetsCodes = [
+  { code: 'A', name: 'Auto Binnen en Buiten', detail: 'Lak polijsten, interieur intensief & lak pantser aanbrengen', price: '€ 225' },
+  { code: 'B', name: 'Auto Binnen en Buiten', detail: 'Lak polijsten, wax & interieur intensief', price: '€ 185' },
+  { code: 'C', name: 'Auto Binnen en Buiten', detail: 'Lak polijsten, wax & “schoonmaken” binnen', price: '€ 135' },
+  { code: 'D', name: 'Auto Buiten', detail: 'Lak ontdoen van vervuiling, polijsten — showroom klaar van buiten', price: '€ 135' },
+  { code: 'E', name: 'Auto Binnen', detail: 'Interieur intensief — showroom klaar van binnen', price: '€ 95' },
+  { code: 'F', name: 'Binnen & Buiten Budget', detail: 'Grondig wassen, wax, interieur stofzuigen, kunststof afnemen', price: '€ 150' },
+  { code: 'G', name: 'Auto Buiten', detail: 'Grondig wassen, wax, afdrogen', price: '€ 99' },
+];
+
+// Echte ruitenblindeer-prijzen
+export const tintPrices = [
+  { item: 'Achterportierruit (draairuit)', price: '€ 60', per: 'per stuk' },
+  { item: 'Achterportierruit (draairuit) + kleine ruit', price: '€ 65', per: 'per stuk' },
+  { item: 'Vaste zijruit', price: 'vanaf € 40', per: 'per stuk' },
+  { item: 'Voorportierruit (draairuit)', price: 'vanaf € 75', per: 'per stuk' },
+  { item: 'Achterruit (Hatchback, Station)', price: '€ 85', per: '' },
+  { item: 'Achterruit (Sedan, Coupe)', price: '€ 150', per: 'aanbieding' },
+  { item: 'Voorruit', price: 'vanaf € 120', per: '' },
 ];

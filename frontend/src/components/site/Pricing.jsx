@@ -1,100 +1,109 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
-import { pricingTiers } from "../../data/mock";
+import { Check, ArrowRight, Info } from "lucide-react";
+import { poetsCodes, company } from "../../data/mock";
 
 export default function Pricing() {
   return (
-    <section id="prijzen" className="relative overflow-hidden bg-background py-24 md:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-10 flex justify-center">
-        <span className="ghost-word text-foreground/[0.05] text-[18vw]">PRICING</span>
-      </div>
-
-      <div className="container-tdc relative">
-        <div className="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+    <section id="prijzen" className="relative bg-background py-20 md:py-28">
+      <div className="container-tdc">
+        <div className="mb-12 grid gap-8 md:grid-cols-12 md:items-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
-            className="max-w-xl"
+            transition={{ duration: 0.6 }}
+            className="md:col-span-7"
           >
             <span className="pill">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Pakketten
+              Prijslijst particulier
             </span>
-            <h2 className="display-lg mt-6">
-              Eerlijke <span className="text-accent-red italic">vanaf-prijzen</span>.
+            <h2 className="display-md mt-5">
+              Eerlijke <span className="text-accent-red italic">vanaf&#8209;prijzen</span>.
             </h2>
           </motion.div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="max-w-sm text-sm text-foreground/65"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="md:col-span-5 text-sm text-foreground/65 leading-relaxed"
           >
-            Prijzen gelden voor kleine middenklasse auto&rsquo;s. Grotere auto&rsquo;s en busjes: vraag een offerte op maat — we vertellen het je vrijblijvend.
+            Prijzen gelden voor kleine middenklasse auto&rsquo;s, inclusief 21% BTW. Voor grotere auto&rsquo;s en busjes maken we een offerte op maat &mdash; bel ons gerust en we vertellen je vrijblijvend de exacte prijs voor jouw auto.
           </motion.p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {pricingTiers.map((tier, i) => (
+        {/* Pricing table */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="overflow-hidden rounded-2xl border border-foreground/10 bg-card"
+        >
+          <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-4 border-b border-foreground/10 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/45">
+            <div className="md:col-span-1">Code</div>
+            <div className="md:col-span-3">Behandeling</div>
+            <div className="md:col-span-6">Wat wordt er gedaan</div>
+            <div className="md:col-span-2 text-right">Vanaf</div>
+          </div>
+          {poetsCodes.map((p, i) => (
             <motion.div
-              key={tier.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`relative overflow-hidden rounded-3xl p-8 transition-all duration-500 ${
-                tier.highlighted
-                  ? "bg-ink text-ink-foreground border border-ink shadow-2xl md:scale-[1.03] md:-translate-y-2"
-                  : "bg-card border border-foreground/10 hover:border-foreground/30 hover:shadow-xl"
-              }`}
+              key={p.code}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.4, delay: i * 0.04 }}
+              className="group grid grid-cols-1 gap-2 md:grid-cols-12 md:gap-4 px-6 py-5 border-b border-foreground/8 last:border-b-0 hover:bg-foreground/[0.02] transition-colors items-center"
             >
-              {tier.highlighted && (
-                <div className="absolute right-5 top-5 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white">
-                  Populair
-                </div>
-              )}
-              <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${tier.highlighted ? 'text-white/55' : 'text-foreground/45'}`}>
-                {tier.tagline}
-              </p>
-              <h3 style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-2 text-3xl font-extrabold tracking-tight">
-                {tier.name}
-              </h3>
-              <div className="mt-5 flex items-baseline gap-2">
-                <span className={`text-xs font-semibold uppercase tracking-wide ${tier.highlighted ? 'text-white/50' : 'text-foreground/40'}`}>{tier.period}</span>
-                <span style={{ fontFamily: "'Inter Tight', sans-serif" }} className="text-5xl font-black tracking-tight">
-                  {tier.price}
+              <div className="md:col-span-1">
+                <span style={{ fontFamily: "'Inter Tight', sans-serif" }} className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-foreground text-background text-sm font-extrabold group-hover:bg-primary transition-colors">
+                  {p.code}
                 </span>
               </div>
-              <ul className="mt-8 space-y-3">
-                {tier.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full ${
-                      tier.highlighted ? 'bg-primary text-white' : 'bg-foreground text-background'
-                    }`}>
-                      <Check size={11} strokeWidth={3} />
-                    </span>
-                    <span className={tier.highlighted ? 'text-white/85' : 'text-foreground/75'}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold transition-colors ${
-                  tier.highlighted
-                    ? 'bg-primary text-white hover:brightness-110'
-                    : 'bg-foreground text-background hover:bg-primary hover:text-white'
-                }`}
-              >
-                {tier.cta} <ArrowRight size={14} />
-              </a>
+              <div className="md:col-span-3">
+                <p className="text-sm font-semibold text-foreground">{p.name}</p>
+              </div>
+              <div className="md:col-span-6">
+                <p className="text-sm text-foreground/65 leading-relaxed">{p.detail}</p>
+              </div>
+              <div className="md:col-span-2 md:text-right">
+                <span style={{ fontFamily: "'Inter Tight', sans-serif" }} className="text-2xl font-extrabold tracking-tight text-foreground">
+                  {p.price}
+                </span>
+              </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Note + CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-8 grid gap-4 md:grid-cols-2"
+        >
+          <div className="flex items-start gap-3 rounded-2xl border border-foreground/10 bg-card px-5 py-4">
+            <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+              <Info size={14} />
+            </span>
+            <p className="text-sm text-foreground/70 leading-relaxed">
+              <span className="font-semibold text-foreground">Zakelijk wassen?</span> Bel voor een afspraak — de eerste auto poetsen we tegen een speciaal <em>probeer&#8209;tarief</em>.
+            </p>
+          </div>
+          <a
+            href={`tel:${company.phoneRaw}`}
+            className="flex items-center justify-between gap-4 rounded-2xl bg-foreground px-6 py-4 text-background transition-colors hover:bg-primary group"
+          >
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-background/60">Vrijblijvende offerte</p>
+              <p style={{ fontFamily: "'Inter Tight', sans-serif" }} className="text-lg font-bold leading-tight">Bel {company.phone}</p>
+            </div>
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
