@@ -2,11 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, MapPin, Palette } from "lucide-react";
 import { userCars, company } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 export default function About() {
   return (
-    <section id="over-ons" className="relative bg-ink py-20 md:py-28 text-ink-foreground">
-      <div className="container-tdc grid gap-12 md:grid-cols-12 md:gap-14 items-center">
+    <section id="over-ons" className="relative overflow-hidden bg-ink py-20 md:py-28 text-ink-foreground">
+      <SectionBackdrop word="Passie" theme="dark" />
+      <div className="container-tdc relative grid gap-12 md:grid-cols-12 md:gap-14 items-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

@@ -14,7 +14,7 @@ export const userCars = {
   audiPolished2: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/fp79nusx_IMG_1154.png',
   tintApplication: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/j8j7eupi_IMG_1155.jpeg',
   tintChart: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/pbwngdqw_IMG_1156.jpeg',
-  tintHero: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/38v7yqfv_IMG_2584.png',
+  tintHero: 'https://customer-assets.emergentagent.com/job_premium-site-upgrade/artifacts/fcncsbt3_image.png',
 };
 
 // Cinematic hero image — red BMW M2 koplamp

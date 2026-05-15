@@ -2,13 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Droplets, Sparkles, Wand2, Shield } from "lucide-react";
 import { processSteps, userCars } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 const iconMap = { Droplets, Sparkles, Wand2, Shield };
 
 export default function Process() {
   return (
-    <section id="werkwijze" className="relative bg-ink py-20 md:py-28 text-ink-foreground">
-      <div className="container-tdc">
+    <section id="werkwijze" className="relative overflow-hidden bg-ink py-20 md:py-28 text-ink-foreground">
+      <SectionBackdrop word="Proces" theme="dark" />
+      <div className="container-tdc relative">
         <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

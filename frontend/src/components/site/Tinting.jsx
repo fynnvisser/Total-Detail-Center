@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Eye, Sun, ArrowUpRight, Check } from "lucide-react";
 import { userCars, tintPrices } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 const benefits = [
   { icon: Eye, title: "Privacy", text: "Kostbaarheden uit zicht — discreet & onopvallend." },
@@ -11,9 +12,9 @@ const benefits = [
 
 const tintLevels = [
   { value: "70%", label: "Licht" },
-  { value: "50%", label: "Medium" },
-  { value: "35%", label: "Donker" },
-  { value: "20%", label: "Privacy" },
+  { value: "30%", label: "Medium" },
+  { value: "20%", label: "Donker" },
+  { value: "15%", label: "Privacy" },
   { value: "5%", label: "Limo" },
 ];
 
@@ -37,6 +38,8 @@ export default function Tinting() {
       />
 
       <div className="container-tdc relative">
+        {/* Subtle ghost word */}
+        <SectionBackdrop word="Blinderen" theme="dark" />
         {/* Eyebrow + Heading */}
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <motion.div

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Phone, Mail } from "lucide-react";
 import { company } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 export default function Location() {
   // Tolwei 24, 9271 HM De Westereen — exacte coordinaten
@@ -11,9 +12,7 @@ export default function Location() {
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - delta}%2C${lat - delta * 0.55}%2C${lng + delta}%2C${lat + delta * 0.55}&layer=mapnik&marker=${lat}%2C${lng}`;
   return (
     <section id="locatie" className="relative overflow-hidden bg-ink py-24 md:py-32 text-ink-foreground">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center">
-        <span className="ghost-word text-white/[0.04] text-[20vw]">LOCATION</span>
-      </div>
+      <SectionBackdrop word="Locatie" theme="dark" />
 
       <div className="container-tdc relative">
         <motion.div

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
 import { company } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 function validate(data) {
   const errs = {};
@@ -41,8 +42,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-background py-20 md:py-28">
-      <div className="container-tdc grid gap-12 md:grid-cols-2 md:gap-14">
+    <section id="contact" className="relative overflow-hidden bg-background py-20 md:py-28">
+      <SectionBackdrop word="Contact" theme="light" />
+      <div className="container-tdc relative grid gap-12 md:grid-cols-2 md:gap-14">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

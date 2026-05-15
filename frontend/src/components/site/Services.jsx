@@ -2,13 +2,15 @@ import React from "react";
 import { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa, Wand2, Palette, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { services } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 const iconMap = { Droplets, Sparkles, Shield, Layers, SquareStack, Sofa, Wand2, Palette };
 
 export default function Services() {
   return (
-    <section id="diensten" className="relative bg-background py-20 md:py-28">
-      <div className="container-tdc">
+    <section id="diensten" className="relative overflow-hidden bg-background py-20 md:py-28">
+      <SectionBackdrop word="Detailing" theme="light" />
+      <div className="container-tdc relative">
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

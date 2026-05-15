@@ -2,11 +2,13 @@ import React from "react";
 import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import { reviews } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="relative bg-ink py-20 md:py-28 text-ink-foreground">
-      <div className="container-tdc">
+    <section id="reviews" className="relative overflow-hidden bg-ink py-20 md:py-28 text-ink-foreground">
+      <SectionBackdrop word="Reviews" theme="dark" />
+      <div className="container-tdc relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

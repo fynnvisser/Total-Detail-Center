@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
+import SectionBackdrop from "./SectionBackdrop";
 
 const faqs = [
   {
@@ -40,8 +41,9 @@ const faqs = [
 export default function FAQ() {
   const [open, setOpen] = useState(0);
   return (
-    <section className="relative bg-background py-20 md:py-28">
-      <div className="container-tdc grid gap-10 md:grid-cols-12 md:gap-14">
+    <section className="relative overflow-hidden bg-background py-20 md:py-28">
+      <SectionBackdrop word="FAQ" theme="light" />
+      <div className="container-tdc relative grid gap-10 md:grid-cols-12 md:gap-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

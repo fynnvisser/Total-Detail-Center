@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Car, Truck, Bus, Sparkles, Shield, Droplets, Lightbulb, ArrowRight, ArrowLeft, MessageCircle, Check, RotateCcw } from "lucide-react";
 import { company } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 // --- Pricing data ---
 const sizes = [
@@ -99,8 +100,9 @@ export default function PricingQuiz() {
   };
 
   return (
-    <section id="prijzen" className="relative bg-background py-20 md:py-28">
-      <div className="container-tdc">
+    <section id="prijzen" className="relative overflow-hidden bg-background py-20 md:py-28">
+      <SectionBackdrop word="Prijs" theme="light" />
+      <div className="container-tdc relative">
         <div className="mb-12 grid gap-8 md:grid-cols-12 md:items-end">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

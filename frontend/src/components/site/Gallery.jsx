@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { userCars } from "../../data/mock";
+import SectionBackdrop from "./SectionBackdrop";
 
 const items = [
   { src: userCars.audiPolished, alt: "Audi A4 — polijsten resultaat", cat: "polijsten", label: "Audi A4", tag: "Polijsten", big: true },
@@ -34,8 +35,9 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section id="projecten" className="relative bg-background py-20 md:py-28">
-      <div className="container-tdc">
+    <section id="projecten" className="relative overflow-hidden bg-background py-20 md:py-28">
+      <SectionBackdrop word="Projecten" theme="light" />
+      <div className="container-tdc relative">
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
