@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "Voldoen jullie aan de RDW-eisen voor ruiten blinderen?",
-    a: "Ja. We blinderen met Sun-Gard folies en hebben een eigen tint-meter om de lichtdoorlaatbaarheid te controleren. Voorportierruiten en voorruit moeten minimaal 55% licht doorlaten; alles achter de B-stijl mag donkerder, mits de auto een rechter buitenspiegel heeft.",
+    a: "Ja. We blinderen met Sun-Tech & Madico folies en hebben een eigen tint-meter om de lichtdoorlaatbaarheid te controleren. Voorportierruiten en voorruit moeten minimaal 55% licht doorlaten; alles achter de B-stijl mag donkerder, mits de auto een rechter buitenspiegel heeft.",
   },
   {
     q: "Hoe lang duurt het ramen blinderen?",

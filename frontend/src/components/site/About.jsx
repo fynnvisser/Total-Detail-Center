@@ -54,7 +54,7 @@ export default function About() {
             Over Total Detail Center
           </span>
           <h2 className="display-md mt-5 text-white">
-            14 jaar passie voor <span className="text-accent-red italic">lak</span>.
+            15 jaar passie voor <span className="text-accent-red italic">lak</span>.
           </h2>
           <p className="mt-5 text-base text-white/75 leading-relaxed">
             In 2011 nam Robert Visser <span className="text-white">Landman Automaterialen</span> over. De zaak verhuisde

@@ -30,7 +30,7 @@ export default function Tinting() {
               Met de beste folies, <span className="text-accent-red italic">RDW&#8209;conform</span>.
             </h2>
             <p className="mt-5 text-sm text-white/70 leading-relaxed">
-              Wij werken uitsluitend met <span className="text-white font-semibold">Sun-Gard</span> tint-folies en monteren volgens alle eisen van de wet en het RDW. Met eigen tint-meter garanderen wij de juiste lichtdoorlaatbaarheid &mdash; minimaal 55% voor voorportieren en voorruit.
+              Wij werken uitsluitend met <span className="text-white font-semibold">Sun-Tech &amp; Madico</span> tint-folies en monteren volgens alle eisen van de wet en het RDW. Met eigen tint-meter garanderen wij de juiste lichtdoorlaatbaarheid &mdash; minimaal 55% voor voorportieren en voorruit.
             </p>
 
             <ul className="mt-7 space-y-3">

@@ -1,70 +1,88 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Car, Truck, Bus, Sparkles, Shield, Droplets, Wand2, SquareStack, ArrowRight, ArrowLeft, MessageCircle, Check, RotateCcw } from "lucide-react";
+import { Car, Truck, Bus, Sparkles, Shield, Droplets, Lightbulb, ArrowRight, ArrowLeft, MessageCircle, Check, RotateCcw } from "lucide-react";
 import { company } from "../../data/mock";
 
-// Quiz logic ---------------------------------
+// --- Pricing data ---
 const sizes = [
-  { id: "small", label: "Klein", sub: "Bijv. VW Polo, Fiat 500", mult: 0.9, icon: Car },
-  { id: "medium", label: "Middenklasse", sub: "Bijv. Audi A4, BMW 3-Serie", mult: 1.0, icon: Car },
-  { id: "large", label: "SUV / Groot", sub: "Bijv. BMW X5, Mercedes GLE", mult: 1.25, icon: Truck },
-  { id: "van", label: "Bus / Bedrijfsauto", sub: "Bijv. VW Transporter", mult: 1.5, icon: Bus },
+  { id: "small", label: "Klein", sub: "Bijv. VW Polo, Fiat 500", icon: Car },
+  { id: "medium", label: "Middenklasse", sub: "Bijv. Audi A4, BMW 3-Serie", icon: Car },
+  { id: "large", label: "SUV / Groot", sub: "Bijv. BMW X5, Mercedes GLE", icon: Truck },
+  { id: "van", label: "Bus / Bedrijfsauto", sub: "Bijv. VW Transporter", icon: Bus },
 ];
 
 const packages = [
-  { id: "G", label: "Onderhoudsbeurt", sub: "Grondig wassen, wax, afdrogen", base: 99, icon: Droplets },
-  { id: "C", label: "Detail Pakket", sub: "Lak polijsten, wax & schoonmaken binnen", base: 135, popular: true, icon: Sparkles },
-  { id: "B", label: "Compleet", sub: "Lak polijsten, wax & interieur intensief", base: 185, icon: Wand2 },
-  { id: "A", label: "Premium + Coating", sub: "Polijsten, interieur intensief & lak pantser", base: 225, icon: Shield },
-];
-
-const conditions = [
-  { id: "good", label: "Goede staat", sub: "Recente auto, weinig krasjes", add: 0 },
-  { id: "average", label: "Normaal", sub: "Wat swirls en lichte aanslag", add: 20 },
-  { id: "rough", label: "Behoorlijk dof", sub: "Veel swirls, krassen, oxidatie", add: 50 },
+  {
+    id: "onderhoud",
+    label: "Onderhoudsbeurt",
+    sub: "Grondig wassen, wax, afdrogen & velgen",
+    icon: Droplets,
+    prices: { small: 99, medium: 125, large: 175, van: 200 },
+  },
+  {
+    id: "detail",
+    label: "Detail Pakket",
+    sub: "Onderhoudsbeurt + lak polijsten & schoonmaken binnen",
+    icon: Sparkles,
+    popular: true,
+    prices: { small: 199, medium: 249, large: 299, van: 350 },
+  },
+  {
+    id: "compleet",
+    label: "Compleet",
+    sub: "Detail pakket + wax, interieur intensief & onder motorkap",
+    icon: Shield,
+    prices: { small: 249, medium: 300, large: 375, van: 450 },
+  },
 ];
 
 const addons = [
-  { id: "coating", label: "Glascoating (9H)", sub: "Tot 5 jaar bescherming", add: 300, icon: Shield },
-  { id: "interior", label: "Interieur diep", sub: "Stoelen, hemel, dashboard", add: 65, icon: Wand2 },
-  { id: "tint", label: "Ramen blinderen", sub: "Sun-Gard tint, RDW-conform", add: 150, icon: SquareStack },
-  { id: "headlight", label: "Koplampen opfrissen", sub: "Vergeling weg, helder weer", add: 40, icon: Sparkles },
+  { id: "headlight", label: "Koplampen opfrissen", sub: "Vergeling weg, helder weer", add: 90, icon: Lightbulb },
+  { id: "ceramic", label: "Ceramische wax", sub: "Extra hydrofobe bescherming", add: 25, icon: Shield },
 ];
 
-function calcPrice({ size, pkg, condition, extras }) {
+function calcPrice({ size, pkg, extras }) {
   if (!size || !pkg) return null;
-  const sizeMult = sizes.find((s) => s.id === size)?.mult ?? 1;
-  const base = packages.find((p) => p.id === pkg)?.base ?? 0;
-  const addCond = conditions.find((c) => c.id === condition)?.add ?? 0;
+  const pkgData = packages.find((p) => p.id === pkg);
+  if (!pkgData) return null;
+  const base = pkgData.prices[size] ?? 0;
   const addExtras = extras.reduce((acc, id) => acc + (addons.find((a) => a.id === id)?.add ?? 0), 0);
-  const subtotal = base * sizeMult + addCond + addExtras;
-  const low = Math.round(subtotal * 0.92);
-  const high = Math.round(subtotal * 1.15);
-  return { low, high };
+  const total = base + addExtras;
+  const low = Math.round(total * 0.95);
+  const high = Math.round(total * 1.20);
+  return { low, high, base, addExtras, total };
 }
 
-// Component ---------------------------------
+// --- Component ---
 export default function PricingQuiz() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({ size: null, pkg: null, condition: null, extras: [] });
+  const [answers, setAnswers] = useState({ size: null, pkg: null, extras: [] });
 
-  const total = 4;
-  const progress = ((step) / total) * 100;
-
+  const totalSteps = 3; // 0:size 1:pkg 2:extras 3:result
   const price = useMemo(() => calcPrice(answers), [answers]);
 
   const set = (k, v) => setAnswers((a) => ({ ...a, [k]: v }));
-  const toggleExtra = (id) => setAnswers((a) => ({ ...a, extras: a.extras.includes(id) ? a.extras.filter((x) => x !== id) : [...a.extras, id] }));
-  const reset = () => { setAnswers({ size: null, pkg: null, condition: null, extras: [] }); setStep(0); };
+  const toggleExtra = (id) =>
+    setAnswers((a) => ({
+      ...a,
+      extras: a.extras.includes(id) ? a.extras.filter((x) => x !== id) : [...a.extras, id],
+    }));
+  const reset = () => { setAnswers({ size: null, pkg: null, extras: [] }); setStep(0); };
 
-  const next = () => setStep((s) => Math.min(total, s + 1));
+  const next = () => setStep((s) => Math.min(totalSteps, s + 1));
   const prev = () => setStep((s) => Math.max(0, s - 1));
 
-  // WhatsApp message
+  const progress = (step / totalSteps) * 100;
+
+  const canNext =
+    (step === 0 && answers.size) ||
+    (step === 1 && answers.pkg) ||
+    step === 2 ||
+    step === 3;
+
   const sendWhatsApp = () => {
     const sizeLabel = sizes.find((s) => s.id === answers.size)?.label || "";
     const pkgLabel = packages.find((p) => p.id === answers.pkg)?.label || "";
-    const condLabel = conditions.find((c) => c.id === answers.condition)?.label || "";
     const extrasLabels = answers.extras.map((id) => addons.find((a) => a.id === id)?.label).filter(Boolean).join(", ") || "—";
     const range = price ? `€ ${price.low} – € ${price.high}` : "—";
     const text = [
@@ -72,7 +90,6 @@ export default function PricingQuiz() {
       ``,
       `*Voertuig:* ${sizeLabel}`,
       `*Pakket:* ${pkgLabel}`,
-      `*Staat lak:* ${condLabel}`,
       `*Extra's:* ${extrasLabels}`,
       `*Indicatie:* ${range}`,
       ``,
@@ -81,22 +98,15 @@ export default function PricingQuiz() {
     window.open(`https://wa.me/${company.whatsapp}?text=${encodeURIComponent(text)}`, "_blank");
   };
 
-  const canNext =
-    (step === 0 && answers.size) ||
-    (step === 1 && answers.pkg) ||
-    (step === 2 && answers.condition) ||
-    step === 3 ||
-    step === 4;
-
   return (
     <section id="prijzen" className="relative bg-background py-20 md:py-28">
       <div className="container-tdc">
         <div className="mb-12 grid gap-8 md:grid-cols-12 md:items-end">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             className="md:col-span-7"
           >
             <span className="pill">
@@ -104,44 +114,42 @@ export default function PricingQuiz() {
               Prijsindicatie
             </span>
             <h2 className="display-md mt-5">
-              Ontdek <span className="text-accent-red italic">jouw prijs</span> in 4 stappen.
+              Bereken <span className="text-accent-red italic">jouw prijs</span>.
             </h2>
           </motion.div>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
             className="md:col-span-5 text-sm text-foreground/65 leading-relaxed"
           >
-            Beantwoord 4 korte vragen &mdash; je krijgt direct een indicatie. Stuur 'm daarna door via WhatsApp voor een definitieve offerte op maat.
+            3 vragen, direct een indicatie. Stuur de uitkomst eenvoudig door via WhatsApp voor een definitieve offerte op maat.
           </motion.p>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           className="relative overflow-hidden rounded-3xl border border-foreground/10 bg-card shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)]"
         >
-          {/* Progress */}
+          {/* Progress bar */}
           <div className="flex items-center justify-between gap-4 px-6 md:px-10 pt-6 md:pt-8">
-            <div className="flex items-center gap-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/45">
-                Stap {Math.min(step + 1, total + 1)} / {total + 1}
-              </span>
-            </div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/45">
+              Stap {Math.min(step + 1, totalSteps + 1)} / {totalSteps + 1}
+            </span>
             <button onClick={reset} className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/45 hover:text-foreground transition-colors">
               <RotateCcw size={12} /> Opnieuw
             </button>
           </div>
-          <div className="mt-4 h-[3px] w-full bg-foreground/8 mx-0">
+          <div className="mt-4 h-[3px] w-full bg-foreground/8">
             <motion.div
               className="h-full bg-primary"
               initial={false}
-              animate={{ width: `${progress + (step === total ? (100 - progress) : 0)}%` }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              animate={{ width: `${step === totalSteps ? 100 : progress}%` }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             />
           </div>
 
@@ -154,7 +162,7 @@ export default function PricingQuiz() {
                       <Card
                         key={s.id}
                         active={answers.size === s.id}
-                        onClick={() => { set("size", s.id); setTimeout(next, 220); }}
+                        onClick={() => { set("size", s.id); setTimeout(next, 200); }}
                       >
                         <s.icon size={20} className="text-primary" />
                         <p className="mt-4 text-base font-bold text-foreground">{s.label}</p>
@@ -165,45 +173,30 @@ export default function PricingQuiz() {
                 </Step>
               )}
               {step === 1 && (
-                <Step key="pkg" title="Welk pakket past het beste?" sub="Je kan altijd later upgraden of extra's toevoegen.">
-                  <Grid cols={2}>
+                <Step key="pkg" title="Welk pakket past het beste?" sub="De prijs is afgestemd op jouw voertuig.">
+                  <Grid cols={3}>
                     {packages.map((p) => (
                       <Card
                         key={p.id}
                         active={answers.pkg === p.id}
-                        onClick={() => { set("pkg", p.id); setTimeout(next, 220); }}
+                        onClick={() => { set("pkg", p.id); setTimeout(next, 200); }}
                       >
                         <div className="flex items-center justify-between">
                           <p.icon size={20} className="text-primary" />
                           {p.popular && <span className="rounded-full bg-primary px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.15em] text-white">Populair</span>}
                         </div>
                         <p className="mt-4 text-base font-bold text-foreground">{p.label}</p>
-                        <p className="mt-1 text-xs text-foreground/55">{p.sub}</p>
-                        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-foreground/40">Vanaf € {p.base}</p>
+                        <p className="mt-1 text-xs text-foreground/55 leading-relaxed">{p.sub}</p>
+                        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-primary">
+                          € {p.prices[answers.size]}
+                        </p>
                       </Card>
                     ))}
                   </Grid>
                 </Step>
               )}
               {step === 2 && (
-                <Step key="cond" title="Hoe is de huidige staat?" sub="Diepere krassen vragen meer polijstwerk.">
-                  <Grid cols={3}>
-                    {conditions.map((c) => (
-                      <Card
-                        key={c.id}
-                        active={answers.condition === c.id}
-                        onClick={() => { set("condition", c.id); setTimeout(next, 220); }}
-                      >
-                        <p className="text-base font-bold text-foreground">{c.label}</p>
-                        <p className="mt-1 text-xs text-foreground/55">{c.sub}</p>
-                        {c.add > 0 && <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-foreground/40">+ € {c.add}</p>}
-                      </Card>
-                    ))}
-                  </Grid>
-                </Step>
-              )}
-              {step === 3 && (
-                <Step key="extras" title="Extra's? (optioneel)" sub="Kies een of meerdere — of sla over.">
+                <Step key="extras" title="Extra's? (optioneel)" sub="Voeg toe of sla over om verder te gaan.">
                   <Grid cols={2}>
                     {addons.map((a) => {
                       const on = answers.extras.includes(a.id);
@@ -228,24 +221,22 @@ export default function PricingQuiz() {
                   </Grid>
                 </Step>
               )}
-              {step === 4 && price && (
+              {step === 3 && price && (
                 <motion.div
                   key="result"
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col md:flex-row md:items-center gap-10"
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.4 }}
+                  className="flex flex-col md:flex-row md:items-stretch gap-8"
                 >
-                  <div className="flex-1">
+                  <div className="flex-1 flex flex-col justify-center">
                     <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">Jouw indicatie</p>
-                    <h3 style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-3 font-extrabold tracking-[-0.04em] text-foreground leading-none">
-                      <span className="text-[clamp(2.5rem,7vw,5rem)]">€ {price.low}</span>
-                      <span className="text-[clamp(1.5rem,3.5vw,2.5rem)] text-foreground/40 mx-2">—</span>
-                      <span className="text-[clamp(2.5rem,7vw,5rem)]">€ {price.high}</span>
+                    <h3 style={{ fontFamily: "'Inter Tight', sans-serif" }} className="mt-3 font-extrabold tracking-[-0.04em] text-foreground leading-[0.95]">
+                      <span className="block text-[clamp(2.25rem,6.5vw,4.5rem)] tabular-nums">€ {price.low} – € {price.high}</span>
                     </h3>
                     <p className="mt-4 text-sm text-foreground/60 max-w-md leading-relaxed">
-                      Dit is een indicatie op basis van je antwoorden. De exacte prijs hangt af van de werkelijke staat van je auto — stuur 'm door en je krijgt een definitieve offerte op maat.
+                      Indicatie op basis van je antwoorden. De exacte prijs hangt af van de werkelijke staat van je auto — stuur 'm door en je krijgt een definitieve offerte op maat.
                     </p>
                     <div className="mt-7 flex flex-wrap gap-3">
                       <button onClick={sendWhatsApp} className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white hover:brightness-110 transition">
@@ -261,16 +252,18 @@ export default function PricingQuiz() {
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-foreground/45">Samenvatting</p>
                     <SummaryRow label="Voertuig" value={sizes.find(s => s.id === answers.size)?.label} />
                     <SummaryRow label="Pakket" value={packages.find(p => p.id === answers.pkg)?.label} />
-                    <SummaryRow label="Staat" value={conditions.find(c => c.id === answers.condition)?.label} />
-                    <SummaryRow label="Extra's" value={answers.extras.length ? answers.extras.map(id => addons.find(a => a.id === id)?.label).join(", ") : "—"} />
+                    <SummaryRow label="Basisprijs" value={`€ ${price.base}`} />
+                    {price.addExtras > 0 && (
+                      <SummaryRow label="Extra's" value={`+ € ${price.addExtras}`} />
+                    )}
+                    <SummaryRow label="Totaal" value={`€ ${price.total}`} bold />
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* Footer nav */}
-          {step < total && (
+          {step < totalSteps && (
             <div className="flex items-center justify-between gap-3 border-t border-foreground/10 px-6 md:px-10 py-5">
               <button
                 onClick={prev}
@@ -284,7 +277,7 @@ export default function PricingQuiz() {
                 disabled={!canNext}
                 className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-xs font-semibold text-background transition disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary"
               >
-                {step === 3 ? "Bekijk indicatie" : "Volgende"} <ArrowRight size={13} />
+                {step === 2 ? "Bekijk indicatie" : "Volgende"} <ArrowRight size={13} />
               </button>
             </div>
           )}
@@ -297,10 +290,10 @@ export default function PricingQuiz() {
 function Step({ title, sub, children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -16 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      exit={{ opacity: 0, y: -12 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
     >
       <h3 style={{ fontFamily: "'Inter Tight', sans-serif" }} className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
         {title}
@@ -323,7 +316,7 @@ function Card({ active, onClick, children }) {
   return (
     <button
       onClick={onClick}
-      className={`group relative text-left rounded-2xl border p-5 transition-all duration-300 ${
+      className={`group relative text-left rounded-2xl border p-5 transition-all duration-200 ${
         active
           ? "border-primary bg-primary/5 shadow-[0_8px_30px_-15px_hsl(0,100%,42%)]"
           : "border-foreground/10 bg-background hover:border-foreground/30 hover:-translate-y-0.5"
@@ -334,11 +327,11 @@ function Card({ active, onClick, children }) {
   );
 }
 
-function SummaryRow({ label, value }) {
+function SummaryRow({ label, value, bold }) {
   return (
     <div className="mt-3 flex items-baseline justify-between gap-3 border-b border-foreground/8 pb-2 last:border-b-0">
       <span className="text-[10px] uppercase tracking-[0.15em] text-foreground/45 shrink-0">{label}</span>
-      <span className="text-xs font-semibold text-foreground text-right">{value || "—"}</span>
+      <span className={`text-right ${bold ? 'text-base font-bold text-foreground' : 'text-xs font-semibold text-foreground'}`}>{value || "—"}</span>
     </div>
   );
 }
